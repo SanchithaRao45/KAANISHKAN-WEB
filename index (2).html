@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaanishka N - Electrical Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #0f0f23;
+            scroll-behavior: smooth;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 15, 35, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #64ffda;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: #ccd6f6;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #64ffda;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="g" cx="50%" cy="50%"><stop stop-color="%2364ffda" stop-opacity="0.1"/><stop offset="100%" stop-color="%2364ffda" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23g)"/><circle cx="800" cy="300" r="150" fill="url(%23g)"/><circle cx="600" cy="700" r="120" fill="url(%23g)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #ccd6f6;
+            margin-bottom: 10px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        .hero .subtitle {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #64ffda;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+        
+        .hero .description {
+            font-size: 1.2rem;
+            color: #8892b0;
+            max-width: 600px;
+            margin-bottom: 40px;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: transparent;
+            border: 2px solid #64ffda;
+            color: #64ffda;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+        
+        .cta-button:hover {
+            background: rgba(100, 255, 218, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Sections */
+        .section {
+            padding: 100px 0;
+            background: #0a0a1e;
+        }
+        
+        .section:nth-child(even) {
+            background: #0f0f23;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            color: #ccd6f6;
+            margin-bottom: 50px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #64ffda;
+            margin: 20px auto;
+        }
+        
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .about-text {
+            color: #8892b0;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .about-text h3 {
+            color: #ccd6f6;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .about-image {
+            position: relative;
+        }
+        
+        .profile-img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 10px;
+            filter: grayscale(100%) contrast(1.2);
+            transition: all 0.3s ease;
+        }
+        
+        .profile-img:hover {
+            filter: grayscale(0%) contrast(1);
+        }
+        
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .skill-category {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .skill-category:hover {
+            border-color: rgba(100, 255, 218, 0.3);
+            transform: translateY(-5px);
+        }
+        
+        .skill-category h3 {
+            color: #64ffda;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .skill-tag {
+            background: rgba(100, 255, 218, 0.1);
+            color: #64ffda;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+        
+        .project-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .project-card:hover {
+            border-color: rgba(100, 255, 218, 0.3);
+            transform: translateY(-5px);
+        }
+        
+        .project-title {
+            color: #ccd6f6;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .project-duration {
+            color: #64ffda;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        
+        .project-description {
+            color: #8892b0;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .tech-tag {
+            background: rgba(100, 255, 218, 0.05);
+            color: #8892b0;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+        }
+        
+        /* Education Section */
+        .education-timeline {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .education-item {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border-left: 4px solid #64ffda;
+            transition: all 0.3s ease;
+        }
+        
+        .education-item:hover {
+            transform: translateX(10px);
+        }
+        
+        .education-degree {
+            color: #ccd6f6;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .education-school {
+            color: #64ffda;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        
+        .education-duration {
+            color: #8892b0;
+            margin-bottom: 15px;
+        }
+        
+        .education-details {
+            color: #8892b0;
+            line-height: 1.6;
+        }
+        
+        /* Contact Section */
+        .contact-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .contact-description {
+            color: #8892b0;
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            line-height: 1.7;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #ccd6f6;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-item:hover {
+            color: #64ffda;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #0a0a1e;
+            padding: 30px 0;
+            text-align: center;
+            border-top: 1px solid rgba(100, 255, 218, 0.1);
+        }
+        
+        .footer p {
+            color: #8892b0;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 2rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-container">
+                <a href="#home" class="logo">KN</a>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Hi, I'm</h1>
+                <div class="subtitle">Kaanishka N</div>
+                <p class="description">
+                    Final year Electrical and Electronics Engineering student with hands-on experience in circuit design, embedded systems programming, and power electronics. Passionate about creating innovative solutions in the field of electrical engineering.
+                </p>
+                <a href="#contact" class="cta-button">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Electrical Engineer & Problem Solver</h3>
+                    <p>
+                        I'm a dedicated Electrical and Electronics Engineering student at BMS College of Engineering with a strong foundation in circuit design, embedded systems, and power electronics. My passion lies in developing efficient electronic systems and exploring innovative solutions in power conversion and embedded communications.
+                    </p>
+                    <br>
+                    <p>
+                        Through various projects and coursework, I've gained expertise in designing boost converters, implementing communication protocols, and creating PCB layouts. I'm particularly interested in power electronics and embedded systems, always seeking to optimize performance and efficiency in electronic designs.
+                    </p>
+                    <br>
+                    <p>
+                        Currently seeking entry-level opportunities to apply my technical skills and contribute to innovative engineering projects. I'm open to relocation and excited about the possibilities in the electrical engineering field.
+                    </p>
+                </div>
+                <div class="about-image">
+                    <div style="width: 300px; height: 300px; background: linear-gradient(135deg, #64ffda 0%, #0f0f23 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 4rem; color: #0f0f23; font-weight: bold;">KN</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section" id="skills">
+        <div class="container">
+            <h2 class="section-title">Skills & Technologies</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Technical Skills</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">C</span>
+                        <span class="skill-tag">Verilog</span>
+                        <span class="skill-tag">Circuit Design</span>
+                        <span class="skill-tag">Embedded Systems</span>
+                        <span class="skill-tag">Power Electronics</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Software Tools</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">MATLAB</span>
+                        <span class="skill-tag">Simulink</span>
+                        <span class="skill-tag">KiCad</span>
+                        <span class="skill-tag">Photoshop</span>
+                        <span class="skill-tag">Canva</span>
+                        <span class="skill-tag">Webflow</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section" id="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3 class="project-title">Planar Inductor Based Boost Converter Design</h3>
+                    <div class="project-duration">Jan 2024 — Apr 2024</div>
+                    <p class="project-description">
+                        Designed and simulated a planar inductor based boost converter to improve power efficiency in DC-DC conversion. Utilized MATLAB and Simulink for circuit modeling and performance analysis, achieving enhanced voltage regulation.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">MATLAB</span>
+                        <span class="tech-tag">Simulink</span>
+                        <span class="tech-tag">Power Electronics</span>
+                        <span class="tech-tag">Circuit Design</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3 class="project-title">Full Duplex UART Implementation</h3>
+                    <div class="project-duration">Feb 2024 — May 2024</div>
+                    <p class="project-description">
+                        Implemented full duplex UART communication protocol in Verilog for embedded system applications. Designed and executed loopback testbench to verify data transmission integrity and timing accuracy.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Verilog</span>
+                        <span class="tech-tag">Embedded Systems</span>
+                        <span class="tech-tag">Digital Logic</span>
+                        <span class="tech-tag">Communication Protocols</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3 class="project-title">PCB Design of DC Current Transformer</h3>
+                    <div class="project-duration">Aug 2023 — Nov 2023</div>
+                    <p class="project-description">
+                        Developed PCB layout for a DC current transformer using KiCad, focusing on compact design and signal integrity. Conducted testing to validate transformer accuracy and reliability under load conditions.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">KiCad</span>
+                        <span class="tech-tag">PCB Design</span>
+                        <span class="tech-tag">Signal Integrity</span>
+                        <span class="tech-tag">Testing</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="section" id="education">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="education-timeline">
+                <div class="education-item">
+                    <div class="education-degree">Bachelor of Engineering in Electrical and Electronics Engineering</div>
+                    <div class="education-school">BMS College of Engineering</div>
+                    <div class="education-duration">Aug 2021 — May 2025</div>
+                    <div class="education-details">
+                        <strong>CGPA: 7.1/10</strong><br>
+                        Relevant coursework: Power Electronics, Embedded Systems, Digital Logic Design, Circuit Theory<br>
+                        Completed projects on planar inductor based boost converter design, PCB design of DC current transformer, stereo FM radio receiver, and full duplex UART implementation in Verilog.
+                    </div>
+                </div>
+
+                <div class="education-item">
+                    <div class="education-degree">Pre-University in Science</div>
+                    <div class="education-school">Saint Claret Pre University College</div>
+                    <div class="education-duration">Jun 2019 — Apr 2021</div>
+                    <div class="education-details">
+                        <strong>Percentage: 95.8%</strong>
+                    </div>
+                </div>
+
+                <div class="education-item">
+                    <div class="education-degree">Secondary School in General Education</div>
+                    <div class="education-school">Sri Sathya Sai Loka Seva Vidya Kendra, Alike</div>
+                    <div class="education-duration">Jun 2017 — Apr 2019</div>
+                    <div class="education-details">
+                        <strong>Percentage: 92.2%</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <p class="contact-description">
+                    I'm currently seeking entry-level opportunities in Electrical Engineering. Whether you have a question, want to discuss potential opportunities, or just want to say hi, I'd love to hear from you!
+                </p>
+                <div class="contact-info">
+                    <a href="tel:9740390190" class="contact-item">
+                        📱 9740390190
+                    </a>
+                    <a href="mailto:kaanishka2803@gmail.com" class="contact-item">
+                        ✉️ kaanishka2803@gmail.com
+                    </a>
+                </div>
+                <p style="color: #8892b0; margin-top: 20px;">
+                    📍 Bangalore, Karnataka, India<br>
+                    Open to Relocate • Hybrid • Travel • On-Site
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Kaanishka N. Designed and built with passion.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(15, 15, 35, 0.98)';
+            } else {
+                nav.style.background = 'rgba(15, 15, 35, 0.95)';
+            }
+        });
+
+        // Add intersection observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
